@@ -42,16 +42,6 @@ def sign_in(request):
         return redirect('/')
 
 
-def task(request):
-    tasks = Task.objects.all()
-    current_user = User.objects.get(username=request.COOKIES.get('username'))
-
-    return render(request, 'tasks/tasks.html', {
-        'tasks': tasks,
-        'current_user': current_user,
-    })
-
-
 def add(request):
     params = {
         key: request.POST.get(key)
@@ -70,12 +60,15 @@ def add(request):
     return redirect('/tasks/tasks')
 
 
+class IndexView(ListView):
+    model = Task
+    template_name = 'tasks/tasks.html'
+    context_object_name = 'tasks'
+
+    def get_queryset(self):
+        return Task.objects.all()
+
+
 class TaskView(DetailView):
     model = Task
     template_name = 'tasks/detail.html'
-
-    # def get(self, *args, **kwargs):
-    #     task = Task.objects.get(id=kwargs.get('id'))
-    #     print(task)
-    #     return HttpResponse('a')
-    # return render()
