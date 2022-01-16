@@ -1,4 +1,4 @@
 # The Task Management
 **Framework:** Django  
 **Programing language:** Python  
-**Feature:** Manager user's tasks
+**Feature:** Manage user's tasks
