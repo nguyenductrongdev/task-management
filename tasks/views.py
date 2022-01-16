@@ -1,4 +1,3 @@
-from math import pi
 import django
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, redirect, HttpResponse
@@ -72,3 +71,4 @@ class IndexView(ListView):
 class TaskView(DetailView):
     model = Task
     template_name = 'tasks/detail.html'
+    context_object_name = 'task'
